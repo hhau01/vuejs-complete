@@ -31,6 +31,12 @@
         </div>
         <hr>
         <input type="text" v-model="color">
+        <input type="text" v-model="width">
+        <hr>
+        <div class="demo" :style="{backgroundColor: color}"></div>
+        <div class="demo" :style="myStyle"></div>
+        <div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>
+        <div class="demo" :style="myStyle"></div>
     </div>
 
     <script>
@@ -40,13 +46,20 @@
                 attachRed: false,
                 attachGreen: false,
                 attachBlue: false,
-                color: 'green'
+                color: 'green',
+                width: 100
             },
             computed: {
                 divClasses: function() {
                     return {
                         red: this.attachRed,
                         blue: !this.attachRed
+                    };
+                },
+                myStyle: function() {
+                    return {
+                        backgroundColor: this.color,
+                        width: this.width + 'px'
                     };
                 }
             }
