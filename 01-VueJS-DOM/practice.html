@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS DOM Practice</title>
+    <script src='https://unpkg.com/vue'></script>
+</head>
+<body>
+    <div id="app">
+        <p>VueJS perty coool - {{ name }} ({{ age }})</p>
+        <p>{{ age * 3}}</p>
+        <p>{{ random() }}</p>
+        <div>
+            <img v-bind:src="image" style="width:100px;height:100px">
+        </div>
+        <div>
+            <input type="text" v-bind:value="name">
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                name: 'Billy',
+                age: 27,
+                image:  'http://r.ddmcdn.com/s_f/o_1/cx_633/cy_0/cw_1725/ch_1725/w_720/APL/uploads/2014/11/too-cute-doggone-it-video-playlist.jpg'
+            },
+            methods: {
+                random: function() {
+                    return Math.random();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
