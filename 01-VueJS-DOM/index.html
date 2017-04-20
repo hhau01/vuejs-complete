@@ -32,6 +32,12 @@
         <button v-on:click="counter--">Decrease</button>
         <p>Counter: {{ counter }}</p>
         <p>Result: {{ result() }} | {{ output }}</p>
+
+        <!--SHORTCUTS-->
+        <!--v-on and @-->
+        <button @click="changeLink">Click to change link</button>
+        <!--v-bind and :-->
+        <a :href="link">Link</a>
     </div>
 
     <script>
@@ -46,12 +52,25 @@
                 y: 0,
                 name: 'Two-way binding'
             },
+            // more optimal for synchronous tasks
             computed: {
                 output: function() {
                     return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
                 }
             },
+            // more optimal for timeout tasks (E.g. requests, response, etc)
+            watch: {
+                counter: function(value) {
+                    var vm = this;
+                    setTimeout(function() {
+                        vm.counter = 0;
+                    }, 2000);
+                }
+            },
             methods: {
+                changeLink: function() {
+                    this.link = 'http://apple.com'
+                },
                 sayHello: function() {
                     this.title = "Hello!";
                     return this.title;
