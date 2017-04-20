@@ -23,10 +23,15 @@
             Coordinates: {{ x }} / {{ y }}
             - <span v-on:mousemove.stop="dummy">DEAD SPOT</span>
         </p>
-        <input type="text" v-on:keyup.enter="alertMe">
-
+        Alert: <input type="text" v-on:keyup.enter="alertMe">
+        </p>
         <input type="text" v-model="name">
         <p>{{ name }}</p>
+
+        <button v-on:click="counter++">Increase</button>
+        <button v-on:click="counter--">Decrease</button>
+        <p>Counter: {{ counter }}</p>
+        <p>Result: {{ result() }} | {{ output }}</p>
     </div>
 
     <script>
@@ -40,6 +45,11 @@
                 x: 0,
                 y: 0,
                 name: 'Two-way binding'
+            },
+            computed: {
+                output: function() {
+                    return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
+                }
             },
             methods: {
                 sayHello: function() {
@@ -55,6 +65,9 @@
                 },
                 alertMe: function() {
                     alert("Alert!");
+                },
+                result: function() {
+                    return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
                 }
             }
         });
