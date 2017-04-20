@@ -16,13 +16,17 @@
         <p v-html="finishedLink"></p>
         <!--<p>{{ finishedLink }}</p>-->
 
-        <button v-on:click="increase(2, $event)">Click me</button>
+        <button v-on:click="counter++">Click me +1</button>
+        <button v-on:click="increase(2, $event)">Click me +2</button>
         <p>{{ counter }}</p>
         <p v-on:mousemove="updateCoordinates">
             Coordinates: {{ x }} / {{ y }}
             - <span v-on:mousemove.stop="dummy">DEAD SPOT</span>
         </p>
         <input type="text" v-on:keyup.enter="alertMe">
+
+        <input type="text" v-model="name">
+        <p>{{ name }}</p>
     </div>
 
     <script>
@@ -34,7 +38,8 @@
                 link: 'http://google.com',
                 finishedLink: '<a href="http://google.com/">Google</a>',
                 x: 0,
-                y: 0
+                y: 0,
+                name: 'Two-way binding'
             },
             methods: {
                 sayHello: function() {
