@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS DOM Practice</title>
+    <script src='https://unpkg.com/vue'></script>
+</head>
+<body>
+    <div id="app">
+        <!--fire when button is clicked-->
+        <div>
+            <button v-on:click="alertMe">Show alert</button>
+        </div>
+
+        <!--fire when any key is pressed-->
+        <div>
+            <input type="text" v-on:keydown="value=$event.target.value">
+            <p>{{ value }}</p>
+        </div>
+
+        <!--fire only when ENTER is pressed-->
+        <div>
+            <input type="text" v-on:keydown.enter="value=$event.target.value">
+            <p>{{ value }}</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                value: ''
+            },
+            methods: {
+                alertMe: function() {
+                    alert('Alert!');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
