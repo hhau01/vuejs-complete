@@ -18,7 +18,11 @@
 
         <button v-on:click="increase(2, $event)">Click me</button>
         <p>{{ counter }}</p>
-        <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
+        <p v-on:mousemove="updateCoordinates">
+            Coordinates: {{ x }} / {{ y }}
+            - <span v-on:mousemove.stop="dummy">DEAD SPOT</span>
+        </p>
+        <input type="text" v-on:keyup.enter="alertMe">
     </div>
 
     <script>
@@ -28,7 +32,9 @@
                 counter: 0,
                 title: 'Hello World!',
                 link: 'http://google.com',
-                finishedLink: '<a href="http://google.com/">Google</a>'
+                finishedLink: '<a href="http://google.com/">Google</a>',
+                x: 0,
+                y: 0
             },
             methods: {
                 sayHello: function() {
@@ -41,6 +47,9 @@
                 updateCoordinates: function(event) {
                     this.x = event.clientX;
                     this.y = event.clientY;
+                },
+                alertMe: function() {
+                    alert("Alert!");
                 }
             }
         });
