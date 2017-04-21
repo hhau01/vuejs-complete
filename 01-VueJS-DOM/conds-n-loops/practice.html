@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Conditionals and Loops Practice</title>
+    <script src='https://unpkg.com/vue'></script>
+</head>
+<body>
+    <div id="app">
+        <!--hook up button to toggle display. use v-if and v-show-->
+        <div>
+            <button @click="isShown = !isShown">Toggle</button>
+            <p v-if="isShown">You either see me...</p>
+            <p v-else>...or me</p>
+            <p v-show="isShown">You either see me...</p>
+            <p v-show="!isShown">...or me</p>
+        </div>
+
+        <!--output ul of array elements and print index-->
+        <ul>
+            <li v-for="(element, index) in array">{{ element }} - {{ index }}</li>
+        </ul>
+
+        <!--print all key-value pairs of myObject-->
+        <ul>
+            <li v-for="(value, keyName, i) in myObject">{{ value }} - {{ keyName }} - {{ i }}</li>
+        </ul>
+
+        <!--print the following object (only values) and also create a nested loop for testData-->
+        <ul>
+            <li v-for="value in testData">
+                <template v-if="Array.isArray(value)">
+                    <div v-for="element in value">{{ element }}</div>
+                </template>
+                <template v-else>
+                    {{ value }}
+                </template>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isShown: true,
+                array: ['Bill', 'Joe', 'Bob', 'Mike'],
+                myObject: {
+                    title: 'Lord of the Rings',
+                    author: 'J.R.R. Tolkiens',
+                    books: '3'
+                },
+                testData: {
+                    name: 'TESTOBJECT',
+                    id: 10,
+                    data: [1.67, 1.33, 0.98, 2.21]
+                }
+            }
+        });
+    </script>
+</body>
+</html>
