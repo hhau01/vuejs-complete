@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Conditionals and Loops</title>
     <script src='https://unpkg.com/vue'></script>
 </head>
 <body>
@@ -15,15 +15,35 @@
             <h1>Hello!</h1>
             <p>Inside template</p>
         </template>
-        <p>Do you also see me?</p>
+        <p v-show="show">Do you also see me?</p>
         <button @click="show = !show">Switch</button>
+
+        <ul>
+            <li v-for="(ingredient, index) in ingredients">{{ ingredient }} ({{ index }})</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="person in persons">
+                <div v-for="(value, key, index) in person">{{ key }}: {{ value }} ({{ index }})</div>
+            </li>
+        </ul>
+        <hr>
+        <template v-for="(ingredient, index) in ingredients">
+            <h3>{{ ingredient }}</h1>
+            <p>{{ index }}</p>
+        </template>
     </div>
 
     <script>
         new Vue({
             el: '#app',
             data: {
-                show: true
+                show: true,
+                ingredients: ['meat', 'fruit', 'cookies'],
+                persons: [
+                    {name: 'John', age: 27, color: 'red'},
+                    {name: 'Bill', age: 'unknown', color: 'blue'}
+                ]
             }
         });
     </script>
