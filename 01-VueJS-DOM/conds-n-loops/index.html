@@ -19,7 +19,7 @@
         <button @click="show = !show">Switch</button>
 
         <ul>
-            <li v-for="(ingredient, index) in ingredients">{{ ingredient }} ({{ index }})</li>
+            <li v-for="(ingredient, index) in ingredients" :key="ingredient">{{ ingredient }} ({{ index }})</li>
         </ul>
         <hr>
         <ul>
@@ -28,10 +28,15 @@
             </li>
         </ul>
         <hr>
-        <template v-for="(ingredient, index) in ingredients">
+        <button @click="ingredients.push('spice')">Add New</button>
+        <template v-for="(ingredient, index) in ingredients" :key="ingredient">
             <h3>{{ ingredient }}</h1>
             <p>{{ index }}</p>
         </template>
+
+        <hr>
+
+        <span v-for="n in 10">{{ n }} </span>
     </div>
 
     <script>
